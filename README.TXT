@@ -10,3 +10,5 @@ This scenario is part of the book
 This scenario is discussed in chapter 13.
 
 Copyright (c) Feena Quinn, Michael Kölling.
+
+If this is shown in GitHub, then git works

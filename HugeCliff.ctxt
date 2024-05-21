@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=HugeCliff
+comment1.params=
+comment1.target=HugeCliff()
+comment2.params=flip
+comment2.target=HugeCliff(boolean)
+comment3.params=
+comment3.target=void\ act()
+numComments=4

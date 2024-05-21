@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Scene
+comment0.text=\r\n\ This\ is\ the\ whole\ scene.\ It\ creates\ and\ contains\ the\ objects\ that\ are\ in\ it.\r\n
+comment1.params=
+comment1.target=Scene()
+comment2.params=flip\ x\ y
+comment2.target=void\ addCliff(java.lang.Boolean,\ int,\ int)
+comment3.params=flip\ x\ y
+comment3.target=void\ addHugeCliff(java.lang.Boolean,\ int,\ int)
+comment4.params=minX\ maxX\ speed\ x\ y
+comment4.target=void\ addCloud(int,\ int,\ int,\ int,\ int)
+comment5.params=x\ y
+comment5.target=void\ addPengu(int,\ int)
+comment6.params=pengu
+comment6.target=void\ goRight(Pengu)
+comment7.params=
+comment7.target=void\ loadNextWorld()
+numComments=8

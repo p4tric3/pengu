@@ -12,6 +12,8 @@ public class Pengu extends Mover
     private Live leben2;
     private Live leben3; 
     private int anzahlLive = 0;
+
+    private int timer = 0;
     
     public Level1 uebergeben()
     {
@@ -24,6 +26,7 @@ public class Pengu extends Mover
         checkKeys();        
         checkFall();
         checkPosition();
+        checkGegner();
         //onGround();
         //checkOnGround();
     }
@@ -198,6 +201,13 @@ public class Pengu extends Mover
         addLeben();
         addLeben();
         addLeben();
+    }
+
+    public void checkGegner(){
+        if(isTouching(Enemy.class)){
+            removeLeben();
+            timer = 3;
+        }
     }
 } 
 

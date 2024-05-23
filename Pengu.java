@@ -26,7 +26,7 @@ public class Pengu extends Mover
         checkKeys();        
         checkFall();
         checkPosition();
-        checkGegner();
+        //checkGegner();
         //onGround();
         //checkOnGround();
     }
@@ -203,12 +203,12 @@ public class Pengu extends Mover
         addLeben();
     }
 
-    public void checkGegner(){
+    /*public void checkGegner(){
         if(isTouching(Enemy.class)){
             removeLeben();
             timer = 3;
         }
-    }
+    }*/
 } 
 
 

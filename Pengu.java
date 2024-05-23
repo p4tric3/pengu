@@ -60,13 +60,13 @@ public class Pengu extends Mover
             if (onGround() && !isTouchingWall(0, -getImage().getHeight() / 2)) {
                 jump();
             } else if (isTouchingWall(-moveSpeed, 0) && Greenfoot.isKeyDown("space")) {
-                smoothWallJump(bounceOffset, -jumpStrength); // Smooth wall jump
+                smoothWallJump(bounceOffset, -jumpStrength); 
             } else if (isTouchingWall(moveSpeed, 0) && Greenfoot.isKeyDown("space")) {
-                smoothWallJump(-bounceOffset, -jumpStrength); // Smooth wall jump
+                smoothWallJump(-bounceOffset, -jumpStrength);
             } else if (isTouchingWall(-moveSpeed, 0) && !onGround() && Greenfoot.isKeyDown("space")) {
-                smoothWallJump(bounceOffset, -jumpStrength); // Smooth wall jump
+                smoothWallJump(bounceOffset, -jumpStrength); 
             } else if (isTouchingWall(moveSpeed, 0) && !onGround() && Greenfoot.isKeyDown("space")) {
-                smoothWallJump(-bounceOffset, -jumpStrength); // Smooth wall jump
+                smoothWallJump(-bounceOffset, -jumpStrength);
             }
         }
         if (Greenfoot.isKeyDown("shift"))
@@ -76,7 +76,7 @@ public class Pengu extends Mover
     }    
     
     private void smoothWallJump(int xOffset, int ySpeed) {
-        for (int i = 0; i < 4; i++) { // Adjust the number of frames for smoother motion
+        for (int i = 0; i < 5; i++) { // Adjust the number of frames for smoother motion
             setLocation(getX() + xOffset / 4, getY()); // Move gradually
             Greenfoot.delay(1); // Delay for smoother animation
         }
@@ -137,7 +137,7 @@ public class Pengu extends Mover
     {
         if(getY()>800){
             removeLeben();
-            setLocation(66,740);
+            setLocation(66,640);
             return true;
         }
         else{

@@ -51,8 +51,11 @@ public class Mover extends Actor
     
     private void gameEnd()
     {
-        Greenfoot.stop();
+        Greenfoot.setWorld(new TodMenue());
     }
-
-
+    
+    public int getVSpeed()
+    {
+        return vSpeed;
+    }
 }

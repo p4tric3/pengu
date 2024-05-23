@@ -5,76 +5,98 @@ import greenfoot.*;
  */
 public class Pengu extends Mover
 {
-    private static final int jumpStrength = 16;
+    private static final int jumpStrength = 24;
+    private int jumpCount = 0;
 
     private Live leben1;
     private Live leben2;
     private Live leben3; 
     private int anzahlLive = 0;
     
+    public Level1 uebergeben()
+    {
+        Level1 level1 = (Level1) getWorld();
+        return level1;
+    }
+    
     public void act() 
     {
         checkKeys();        
         checkFall();
         checkPosition();
+        //onGround();
+        //checkOnGround();
     }
     
-private void checkKeys() {
-    int moveSpeed = 5; // Adjust this value as needed
-    int bounceOffset = moveSpeed * 15; // Adjust this value for the bounce distance
-
-    if (Greenfoot.isKeyDown("left")) {
-        setImage("pengu-left.png");
-        if (!isTouchingWall(-moveSpeed, 0)) {
-            setLocation(getX() - moveSpeed, getY()); // Manually adjust position
+    private void checkKeys()
+    {
+        int moveSpeed = 5; // Adjust this value as needed
+        int bounceOffset = moveSpeed * 15; // Adjust this value for the bounce distance
+        
+        if (Greenfoot.isKeyDown("a")) {
+            setImage("pengu-left.png");
+            if (!isTouchingWall(-moveSpeed, 0)) {
+                setLocation(getX() - moveSpeed, getY()); // Manually adjust position
+            }
         }
-    }
-    if (Greenfoot.isKeyDown("right")) {
-        setImage("pengu-right.png");
-        if (!isTouchingWall(moveSpeed, 0)) {
-            setLocation(getX() + moveSpeed, getY()); // Manually adjust position
+        if (Greenfoot.isKeyDown("d")) {
+            setImage("pengu-right.png");
+            if (!isTouchingWall(moveSpeed, 0)) {
+                setLocation(getX() + moveSpeed, getY()); // Manually adjust position
+            }
         }
-    }
-    if (Greenfoot.isKeyDown("space")) {
-        if (onGround() && !isTouchingWall(0, -getImage().getHeight() / 2)) {
-            jump();
-        } else if (isTouchingWall(-moveSpeed, 0) && Greenfoot.isKeyDown("space")) {
-            smoothWallJump(bounceOffset, -jumpStrength); // Smooth wall jump
-        } else if (isTouchingWall(moveSpeed, 0) && Greenfoot.isKeyDown("space")) {
-            smoothWallJump(-bounceOffset, -jumpStrength); // Smooth wall jump
-        } else if (isTouchingWall(-moveSpeed, 0) && !onGround() && Greenfoot.isKeyDown("space")) {
-            smoothWallJump(bounceOffset, -jumpStrength); // Smooth wall jump
-        } else if (isTouchingWall(moveSpeed, 0) && !onGround() && Greenfoot.isKeyDown("space")) {
-            smoothWallJump(-bounceOffset, -jumpStrength); // Smooth wall jump
+        if (Greenfoot.isKeyDown("space") )
+        {
+            if (onGround())
+                jump();
+            if(!onGround() && getVSpeed() > 0 && jumpCount == 0)
+            {
+                jump();
+                jumpCount++;
+            }
+            if (onGround() && !isTouchingWall(0, -getImage().getHeight() / 2)) {
+                jump();
+            } else if (isTouchingWall(-moveSpeed, 0) && Greenfoot.isKeyDown("space")) {
+                smoothWallJump(bounceOffset, -jumpStrength); // Smooth wall jump
+            } else if (isTouchingWall(moveSpeed, 0) && Greenfoot.isKeyDown("space")) {
+                smoothWallJump(-bounceOffset, -jumpStrength); // Smooth wall jump
+            } else if (isTouchingWall(-moveSpeed, 0) && !onGround() && Greenfoot.isKeyDown("space")) {
+                smoothWallJump(bounceOffset, -jumpStrength); // Smooth wall jump
+            } else if (isTouchingWall(moveSpeed, 0) && !onGround() && Greenfoot.isKeyDown("space")) {
+                smoothWallJump(-bounceOffset, -jumpStrength); // Smooth wall jump
+            }
         }
+        if (Greenfoot.isKeyDown("shift"))
+        {
+            snowball(15, 100);
+        }
+    }    
+    
+    private void smoothWallJump(int xOffset, int ySpeed) {
+        for (int i = 0; i < 4; i++) { // Adjust the number of frames for smoother motion
+            setLocation(getX() + xOffset / 4, getY()); // Move gradually
+            Greenfoot.delay(1); // Delay for smoother animation
+        }
+        setVSpeed(ySpeed); // Set the vertical speed
+        fall(); // Trigger falling motion
     }
-}
-
-private void smoothWallJump(int xOffset, int ySpeed) {
-    for (int i = 0; i < 4; i++) { // Adjust the number of frames for smoother motion
-        setLocation(getX() + xOffset / 4, getY()); // Move gradually
-        Greenfoot.delay(1); // Delay for smoother animation
-    }
-    setVSpeed(ySpeed); // Set the vertical speed
-    fall(); // Trigger falling motion
-}
 
     private boolean isTouchingWall(int dx, int dy) {
         Actor actor = getOneObjectAtOffset(dx, dy, null); // Check for any object
         return actor != null;
     }
 
-    
-    private void checkPosition() 
+    public void checkPosition() 
     {
         if (getX() > 1400) 
         {
-            Scene scene = (Scene) getWorld();
-            scene.goRight(this);
+            Level1 level1 = (Level1) getWorld();
+            level1.goRight(this);
         }
     }
     
-    private void jump() {
+    private void jump()
+    {
         if (onGround() && !isTouchingWall(0, -getImage().getHeight() / 2)) {
             setVSpeed(-jumpStrength);
             fall();
@@ -91,10 +113,23 @@ private void smoothWallJump(int xOffset, int ySpeed) {
             fallDamage();
         }
     }
-
-        /**
-     * Diese Methode checkt die ganze Zeit welche y-Koordinate man hat und wenn diese eine bestimmte Nummer ereicht wird man an einem bestimmten Ort wieder gespawnt    
-     */
+    
+    public void snowball(int sSpeed, int range)
+    {
+        Level1 level1 = (Level1) getWorld();
+        level1.snowball(sSpeed, range, getY(), getX());
+    }
+    
+    public void checkOnGround()
+    {
+        //System.out.println(onGround());
+        
+        /*if(onGround())
+        {
+            jumpCount = 0;
+        }**/
+    }
+    
     private boolean fallDamage()
     {
         if(getY()>800){
@@ -106,6 +141,7 @@ private void smoothWallJump(int xOffset, int ySpeed) {
             return false;
         }
     }
+    
     /**
     * Diese Methode erstellt bis zu drei Leben 
     */
@@ -163,6 +199,7 @@ private void smoothWallJump(int xOffset, int ySpeed) {
         addLeben();
         addLeben();
     }
-}
+} 
 
-    
+
+  

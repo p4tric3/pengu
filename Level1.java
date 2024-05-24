@@ -53,7 +53,7 @@ public class Level1 extends World
     public void goRight(Pengu pengu)
     {
          //Unload all Objects
-         removeObject(pengu);
+   ;
          removeObjects(getObjects(Cliff.class));
          removeObjects(getObjects(HugeCliff.class));
          removeObjects(getObjects(Cloud.class));

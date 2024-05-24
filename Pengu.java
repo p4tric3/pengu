@@ -12,6 +12,10 @@ public class Pengu extends Mover
     private Live leben2;
     private Live leben3; 
     private int anzahlLive = 0;
+    
+    private GreenfootImage penguRight = new GreenfootImage("pengu-right.png");
+    private GreenfootImage penguLeft = new GreenfootImage("pengu-left.png");
+    private GreenfootImage hiddenImage = null;
 
     private int timer = 0;
     
@@ -26,9 +30,10 @@ public class Pengu extends Mover
         checkKeys();        
         checkFall();
         checkPosition();
-        //checkGegner();
+        checkGegner();
         //onGround();
         //checkOnGround();
+        timer--;
     }
     
     private void checkKeys()
@@ -203,13 +208,15 @@ public class Pengu extends Mover
         addLeben();
     }
 
-    /*public void checkGegner(){
+    public void checkGegner(){
         if(isTouching(Enemy.class)){
-            removeLeben();
-            timer = 3;
+            if (timer<=0){
+                removeLeben();
+                timer = 10000;
+            }
         }
-    }*/
-} 
+    }
+}
 
 
   

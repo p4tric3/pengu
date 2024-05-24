@@ -149,7 +149,6 @@ public class Pengu extends Mover
         if(anzahlLive == 0){
             leben1= new Live();
             welt1.addObject(leben1, 1450, 30);
-            Greenfoot.setWorld(new TodMenue());
         }
         else if(anzahlLive == 1){
             leben2= new Live();
@@ -187,7 +186,8 @@ public class Pengu extends Mover
             anzahlLive = anzahlLive - 1;    
         }
         else if (anzahlLive == 0 ){
-            anzahlLive = anzahlLive; 
+            anzahlLive = anzahlLive;
+            Greenfoot.setWorld(new TodMenue());
         }
     }
     

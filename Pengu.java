@@ -27,8 +27,8 @@ public class Pengu extends Mover
         checkFall();
         checkPosition();
         //checkGegner();
-        //onGround();
-        //checkOnGround();
+        onGround();
+        checkOnGround();
     }
     
     private void checkKeys()
@@ -124,13 +124,11 @@ public class Pengu extends Mover
     }
     
     public void checkOnGround()
-    {
-        //System.out.println(onGround());
-        
-        /*if(onGround())
+    {        
+        if(onGround())
         {
             jumpCount = 0;
-        }**/
+        }
     }
     
     private boolean fallDamage()

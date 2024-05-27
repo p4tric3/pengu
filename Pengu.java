@@ -15,12 +15,6 @@ public class Pengu extends Mover
 
     private int timer = 0;
     
-    public Level1 uebergeben()
-    {
-        Level1 level1 = (Level1) getWorld();
-        return level1;
-    }
-    
     public void act() 
     {
         checkKeys();        
@@ -192,7 +186,8 @@ public class Pengu extends Mover
             anzahlLive = anzahlLive - 1;    
         }
         else if (anzahlLive == 0 ){
-            anzahlLive = anzahlLive; 
+            anzahlLive = anzahlLive;
+            Greenfoot.setWorld(new TodMenue());
         }
     }
     

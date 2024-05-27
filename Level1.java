@@ -22,14 +22,12 @@ public class Level1 extends World
         
         addCloud(460, 830, 4, y-300);
         
-        screenshot();
-        
         //addPengu(66, y-340);
         Pengu pinguin = new Pengu();
         addObject (pinguin, 85, 670 );
         pinguin.startLeben();
         
-        //setBackground(new GreenfootImage("images/bg.png"));
+        setBackground(new GreenfootImage("images/bg.png"));
     }
     
     //All Map parts to add
@@ -59,7 +57,6 @@ public class Level1 extends World
          removeObjects(getObjects(Cloud.class));
          //Load next world
          loadNextWorld();
-         screenshot();
          part++;
     }
     //Load next part
@@ -84,22 +81,6 @@ public class Level1 extends World
                 //Go back to world selection
         }
         addPengu(60, y-400);//addObject ( new Pengu(), 60, y-400 );
-    }
-    
-    public GreenfootImage screenshot()
-    {
-        GreenfootImage screenshot = getBackground();
-        
-        for (int x = 0; x < screenshot.getWidth(); x++) {
-            for (int y = 0; y < screenshot.getHeight(); y++) {
-                Color pixelFarbe = getColorAt(x, y);
-                screenshot.setColorAt(x, y, new Color(pixelFarbe.getRed()-5, pixelFarbe.getGreen()-5, pixelFarbe.getBlue()-5, 255));
-            }
-        }
-        
-        setBackground(screenshot);
-        
-        return screenshot;
     }
     
     public void snowball(int sSpeed, int range, int yPos, int xPos)

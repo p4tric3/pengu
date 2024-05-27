@@ -9,6 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Snowball extends Actor
 {
     private int speed;
+    private int gravity = -10;
+    private int counter = 0;
+    private int counterSteps = 3;
     
     public Snowball(int speedg)
     {
@@ -21,12 +24,20 @@ public class Snowball extends Actor
     
     public void act() 
     {
-        setLocation ( getX() + speed, getY() );
+        setLocation ( getX() + speed, getY() + gravity);
         
         if(getOneIntersectingObject(null) != null && getOneIntersectingObject(Pengu.class) == null)
         {
             World world1 = (World) getWorld();
             world1.removeObject(this);
         }
+        
+        if((double) counter/counterSteps == counter/counterSteps)
+        {
+            gravity++;
+            //System.out.print((double)counter + ", " + counterSteps + "\n");
+        }
+        
+        counter++;
     }
 }

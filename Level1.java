@@ -12,7 +12,7 @@ public class Level1 extends World
     private int y = 1100;
     private int part = 1;
     
-    private Pengu pengu;
+    Pengu pinguin = new Pengu();
     
     public Level1()
     {    
@@ -22,8 +22,7 @@ public class Level1 extends World
         
         addCloud(460, 830, 4, y-300);
         
-        //addPengu(66, y-340);
-        Pengu pinguin = new Pengu();
+        
         addObject (pinguin, 85, 670 );
         pinguin.startLeben();
         
@@ -50,14 +49,15 @@ public class Level1 extends World
     //When Pengu is on the right the method is executed
     public void goRight(Pengu pengu)
     {
-         //Unload all Objects
-         removeObject(pengu);
-         removeObjects(getObjects(Cliff.class));
-         removeObjects(getObjects(HugeCliff.class));
-         removeObjects(getObjects(Cloud.class));
-         //Load next world
-         loadNextWorld();
-         part++;
+        //Unload all Objects
+
+        pinguin.setLocation(66,640);
+        removeObjects(getObjects(Cliff.class));
+        removeObjects(getObjects(HugeCliff.class));
+        removeObjects(getObjects(Cloud.class));
+        //Load next world
+        loadNextWorld();
+        part++;
     }
     //Load next part
     public void loadNextWorld(){
@@ -80,7 +80,7 @@ public class Level1 extends World
                 //Greenfoot.setWorld(new Weltenauswahl());
                 //Go back to world selection
         }
-        addPengu(60, y-400);//addObject ( new Pengu(), 60, y-400 );
+        //addPengu(60, y-400);//addObject ( new Pengu(), 60, y-400 );
     }
     
     public void snowball(int sSpeed, int range, int yPos, int xPos)

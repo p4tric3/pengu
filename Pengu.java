@@ -7,6 +7,7 @@ public class Pengu extends Mover
 {
     private static final int jumpStrength = 24;
     private int jumpCount = 0;
+    public static boolean changeWorld = false;
 
     private Live leben1;
     private Live leben2;
@@ -17,17 +18,21 @@ public class Pengu extends Mover
     
     public void act() 
     {
+        if (!changeWorld){
         checkKeys();        
         checkFall();
         checkPosition();
-        //checkGegner();
+        checkGegner();
         onGround();
         checkOnGround();
+        } else {
+            System.out.println("false");
+        }
     }
     
     private void checkKeys()
     {
-        int moveSpeed = 5; // Adjust this value as needed
+        int moveSpeed = 50; // Adjust this value as needed
         int bounceOffset = moveSpeed * 15; // Adjust this value for the bounce distance
         
         if (Greenfoot.isKeyDown("a")) {
@@ -196,12 +201,12 @@ public class Pengu extends Mover
         addLeben();
     }
 
-    /*public void checkGegner(){
+    public void checkGegner(){
         if (timer<=0){
             removeLeben();
             timer = 10000;
         }
-    }*/
+    }
 }
 
 

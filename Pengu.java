@@ -37,9 +37,9 @@ public class Pengu extends Mover
         onGround();
         checkOnGround();
         countdown();
+        }
     }
-    
-    private void checkKeys()
+    public void checkKeys()
     {
         int moveSpeed = 50; // Adjust this value as needed
         int bounceOffset = moveSpeed * 15; // Adjust this value for the bounce distance
@@ -213,6 +213,7 @@ public class Pengu extends Mover
         }
         else if (anzahlLive == 0 ){
             anzahlLive = anzahlLive; 
+            Greenfoot.setWorld(new TodMenue());
         }
     }
     

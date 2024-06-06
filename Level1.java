@@ -21,8 +21,8 @@ public class Level1 extends World
         addHugeCliff(false, 1200, y);
         
         addCloud(460, 830, 4, y-300);
-        
-        
+        addEnemy(305, 670);
+
         addObject (pinguin, 85, 670 );
         pinguin.startLeben();
         
@@ -44,6 +44,10 @@ public class Level1 extends World
     
     public void addPengu(int x, int y){
         addObject ( new Pengu(), x, y);
+    }
+    
+    public void addEnemy(int x, int y){
+        addObject ( new Enemy(), x, y);
     }
     
     //When Pengu is on the right the method is executed

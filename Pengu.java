@@ -5,7 +5,7 @@ import greenfoot.*;
  */
 public class Pengu extends Mover
 {
-    private static final int jumpStrength = 24;
+    private int jumpStrength = 20;
     private int jumpCount = 0;
     public static boolean changeWorld = false;
 
@@ -41,7 +41,7 @@ public class Pengu extends Mover
     }
     public void checkKeys()
     {
-        int moveSpeed = 50; // Adjust this value as needed
+        int moveSpeed = 7; // Adjust this value as needed
         int bounceOffset = moveSpeed * 15; // Adjust this value for the bounce distance
         
         if (Greenfoot.isKeyDown("a") && timer < 0) {
@@ -79,7 +79,8 @@ public class Pengu extends Mover
             }
             if (onGround() && !isTouchingWall(0, -getImage().getHeight() / 2)) {
                 jump();
-            } else if (isTouchingWall(-moveSpeed, 0) && Greenfoot.isKeyDown("space")) {
+            }
+            /* else if (isTouchingWall(-moveSpeed, 0) && Greenfoot.isKeyDown("space")) {
                 smoothWallJump(bounceOffset, -jumpStrength); 
             } else if (isTouchingWall(moveSpeed, 0) && Greenfoot.isKeyDown("space")) {
                 smoothWallJump(-bounceOffset, -jumpStrength);
@@ -87,7 +88,7 @@ public class Pengu extends Mover
                 smoothWallJump(bounceOffset, -jumpStrength); 
             } else if (isTouchingWall(moveSpeed, 0) && !onGround() && Greenfoot.isKeyDown("space")) {
                 smoothWallJump(-bounceOffset, -jumpStrength);
-            }
+            }*/
         }
         if (Greenfoot.isKeyDown("shift"))
         {
@@ -120,10 +121,11 @@ public class Pengu extends Mover
     
     private void jump()
     {
-        if (onGround() && !isTouchingWall(0, -getImage().getHeight() / 2)) {
+        if (!isTouchingWall(0, -getImage().getHeight() / 2)) {
             setVSpeed(-jumpStrength);
             fall();
         }
+        
     }
     
     private void checkFall()
@@ -145,12 +147,10 @@ public class Pengu extends Mover
     
     public void checkOnGround()
     {
-        //System.out.println(onGround());
-        
-        /*if(onGround())
+        if(onGround())
         {
             jumpCount = 0;
-        }**/
+        }
     }
     
     private boolean fallDamage()

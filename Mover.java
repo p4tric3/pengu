@@ -7,8 +7,8 @@ import greenfoot.*;
  */
 public class Mover extends Actor
 {
-    private static final int acceleration = 2;      // down (gravity)
-    private static final int speed = 7;             // running speed (sideways)
+    private int acceleration = 2;      // down (gravity)
+    private int speed = 7;             // running speed (sideways)
     
     private int vSpeed = 0;                         // current vertical speed
     

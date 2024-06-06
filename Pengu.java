@@ -7,37 +7,66 @@ public class Pengu extends Mover
 {
     private static final int jumpStrength = 24;
     private int jumpCount = 0;
+    public static boolean changeWorld = false;
 
     private Live leben1;
     private Live leben2;
     private Live leben3; 
     private int anzahlLive = 0;
+    
+    private GreenfootImage penguRight = new GreenfootImage("pengu-right.png");
+    private GreenfootImage penguLeft = new GreenfootImage("pengu-left.png");
+    private GreenfootImage hiddenImage = null;
 
-    private int timer = 0;
+    private int timerDamage = 0;
+    private int counterImage = 0;
+    private int counterImageSteps = 3;
+    private int blinkPhase = 0;
+    
+    public Level1 uebergeben()
+    {
+        Level1 level1 = (Level1) getWorld();
+        return level1;
+    }
     
     public void act() 
     {
-        checkKeys();        
-        checkFall();
-        checkPosition();
-        //checkGegner();
-        //onGround();
-        //checkOnGround();
+        if (!changeWorld){
+            checkKeys();        
+            checkFall();
+            checkPosition();
+            checkGegner();
+            if(timerDamage >= 0)
+            {
+                timerDamage--;
+            }
+            onGround();
+            checkOnGround();
+            countdownDamage();
+            manageImages();
+        }
     }
-    
-    private void checkKeys()
+    public void checkKeys()
     {
-        int moveSpeed = 5; // Adjust this value as needed
+        int moveSpeed = 7; // Adjust this value as needed
         int bounceOffset = moveSpeed * 15; // Adjust this value for the bounce distance
         
-        if (Greenfoot.isKeyDown("a")) {
-            setImage("pengu-left.png");
+        if (Greenfoot.isKeyDown("a") && timerDamage < 0) {
             if (!isTouchingWall(-moveSpeed, 0)) {
                 setLocation(getX() - moveSpeed, getY()); // Manually adjust position
             }
         }
-        if (Greenfoot.isKeyDown("d")) {
-            setImage("pengu-right.png");
+        if (Greenfoot.isKeyDown("a") && timerDamage > 0) {
+            if (!isTouchingWall(-moveSpeed, 0)) {
+                setLocation(getX() - moveSpeed, getY()); // Manually adjust position
+            }
+        }
+        if (Greenfoot.isKeyDown("d") && timerDamage < 0) {
+            if (!isTouchingWall(moveSpeed, 0)) {
+                setLocation(getX() + moveSpeed, getY()); // Manually adjust position
+            }
+        }
+        if (Greenfoot.isKeyDown("d") && timerDamage > 0) {
             if (!isTouchingWall(moveSpeed, 0)) {
                 setLocation(getX() + moveSpeed, getY()); // Manually adjust position
             }
@@ -67,7 +96,49 @@ public class Pengu extends Mover
         {
             snowball(15, 100);
         }
-    }    
+    }
+    
+    public void manageImages()
+    {
+        int a = 13;
+        
+        
+        if(timerDamage > 0)
+        {
+            if((double) counterImage/counterImageSteps == counterImage/counterImageSteps)
+            {
+                blinkPhase++;
+                //System.out.print((double)counter + ", " + counterSteps + "\n");
+            }
+            if((double) blinkPhase/a == (int) blinkPhase/a && Greenfoot.isKeyDown("a"))
+            {
+                setImage("wounded-pengu-left.png");
+            }
+            else if((double) blinkPhase/a == (int) blinkPhase/a && Greenfoot.isKeyDown("d"))
+            {
+                setImage("wounded-pengu-right.png");
+            }
+            else if((double) blinkPhase/a != (int) blinkPhase/a && Greenfoot.isKeyDown("a"))
+            {
+                setImage("pengu-left.png");
+            }
+            else if((double) blinkPhase/a != (int) blinkPhase/a && Greenfoot.isKeyDown("d"))
+            {
+                setImage("pengu-right.png");
+            }
+        }
+        else
+        {
+            if(Greenfoot.isKeyDown("a"))
+            {
+                setImage("pengu-left.png");
+            }
+            else if(Greenfoot.isKeyDown("d"))
+            {
+                setImage("pengu-right.png");
+            }
+        }
+    }
     
     private void smoothWallJump(int xOffset, int ySpeed) {
         for (int i = 0; i < 5; i++) { // Adjust the number of frames for smoother motion
@@ -186,7 +257,7 @@ public class Pengu extends Mover
             anzahlLive = anzahlLive - 1;    
         }
         else if (anzahlLive == 0 ){
-            anzahlLive = anzahlLive;
+            anzahlLive = anzahlLive; 
             Greenfoot.setWorld(new TodMenue());
         }
     }
@@ -198,13 +269,19 @@ public class Pengu extends Mover
         addLeben();
     }
 
-    /*public void checkGegner(){
-        if(isTouching(Enemy.class)){
-            removeLeben();
-            timer = 3;
+    public void checkGegner(){
+        if (isTouching(Enemy.class)){
+            if (timerDamage<=0){
+                removeLeben();
+                timerDamage = 100;
+            }
         }
-    }*/
-} 
+    }
+    
+    public void countdownDamage(){
+        timerDamage = timerDamage - 1;
+    }
+}
 
 
   

@@ -1,4 +1,4 @@
-    === PENGU ===
+            === PENGU ===
 
 This scenario is part of the book 
 
@@ -8,5 +8,6 @@ This scenario is part of the book
     ISBN: 0134054296
 
 This scenario is discussed in chapter 13.
-
 Copyright (c) Feena Quinn, Michael Kölling.
+
+This game is part of a school Project

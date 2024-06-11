@@ -5,15 +5,18 @@ import greenfoot.*;
  */
 public class Pengu extends Mover
 {
-    private static final int jumpStrength = 24;
+    private int jumpStrength = 16;
     private int jumpCount = 0;
-
+    private int rutschCount = 0;
+    private int moveSpeed = 5;
+    
     private Live leben1;
     private Live leben2;
     private Live leben3; 
     private int anzahlLive = 0;
 
     private int timer = 0;
+    
     
     public void act() 
     {
@@ -27,11 +30,18 @@ public class Pengu extends Mover
     
     private void checkKeys()
     {
-        int moveSpeed = 5; // Adjust this value as needed
+        //int moveSpeed = 5; // Adjust this value as needed
         int bounceOffset = moveSpeed * 15; // Adjust this value for the bounce distance
         
         if (Greenfoot.isKeyDown("a")) {
             setImage("pengu-left.png");
+            //if (moveSpeed() <= 6)
+            //{
+             //  moveSpeed = moveSpeed + 1;
+            //}
+            //else{
+              //  moveSpeed = moveSpeed + 0;
+           // }
             if (!isTouchingWall(-moveSpeed, 0)) {
                 setLocation(getX() - moveSpeed, getY()); // Manually adjust position
             }
@@ -67,7 +77,48 @@ public class Pengu extends Mover
         {
             snowball(15, 100);
         }
-    }    
+        if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("d"))
+        {
+            setImage("bauchrutschenright.png");
+            if(rutschCount() > 0)
+            {
+                moveSpeed = 12;
+            }
+            rutschCount++;
+        }
+        if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("a"))
+        {
+            setImage("bauchrutschenleft.png");
+            if(rutschCount() > 0)
+            {
+                moveSpeed = 12;
+            }
+            rutschCount++;
+        }
+        if (rutschCount() > 60)
+        {
+            moveSpeed = moveSpeed - 1;
+            //System.out.println("lol");
+            if(moveSpeed() > 5)
+            {
+                rutschCount = -120;
+            }
+        }
+        if (moveSpeed() > 6)
+        {
+            moveSpeed = moveSpeed - 1;
+        }
+    }
+    
+    private int moveSpeed()
+    {
+        return moveSpeed;
+    }
+    
+    private int rutschCount()
+    {
+        return rutschCount;
+    }
     
     private void smoothWallJump(int xOffset, int ySpeed) {
         for (int i = 0; i < 5; i++) { // Adjust the number of frames for smoother motion
@@ -94,7 +145,7 @@ public class Pengu extends Mover
     
     private void jump()
     {
-        if (onGround() && !isTouchingWall(0, -getImage().getHeight() / 2)) {
+        if (onGround() && !isTouchingWall(0, -getImage().getHeight() / 2) || !onGround() && getVSpeed() > 0 && jumpCount == 0) {
             setVSpeed(-jumpStrength);
             fall();
         }

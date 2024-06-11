@@ -30,6 +30,9 @@ public class Button extends Actor
                 case 3: 
                     Greenfoot.setWorld(new Level1());
                     break;
+                case 4: 
+                    //Greenfoot.setWorld(new Level2());
+                    break;
             }
         }
     }

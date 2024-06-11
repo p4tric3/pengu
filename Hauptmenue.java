@@ -7,19 +7,19 @@ public class Hauptmenue extends World
 {
     private int y = 1100;
     private int part = 1;
-    private int buttonBreite = 200;
+    private int buttonBreite = 300;
     private int buttonHoehe = 50;
 
     public Hauptmenue()
     {    
         super(1488, 837, 1);    // define size and resolution
 
-        addObject ( new Button(buttonBreite, buttonHoehe, 1), 1488/2, 450);
-        addObject ( new Button(buttonBreite, buttonHoehe, 2), 1488/2, 520);
-        addObject ( new Button(buttonBreite, buttonHoehe, 3), 1488/2, 590);
-        addObject ( new Title(450, 160), 1488/2, 250);
+        addObject ( new Button(buttonBreite, buttonHoehe, 1, "buttonStart.png"), 1488/2, 450);
+        addObject ( new Button(buttonBreite, buttonHoehe, 2, "buttonWelten.png"), 1488/2, 520);
+        addObject ( new Button(buttonBreite, buttonHoehe, 3, "buttonCredits.png"), 1488/2, 590);
+        addObject ( new Title(519, 129), 1488/2, 250);
 
-        setBackground("Blackscreen.jpg");
+        setBackground("titlebg.png");
         checkKeys();
         prepare();
     }

@@ -50,7 +50,10 @@ public class Pengu extends Mover
     {
         int moveSpeed = 7; // Adjust this value as needed
         int bounceOffset = moveSpeed * 15; // Adjust this value for the bounce distance
-        
+
+        if (Greenfoot.isKeyDown("escape")) {
+            Greenfoot.setWorld(new Hauptmenue());
+        }
         if (Greenfoot.isKeyDown("a") && timerDamage < 0) {
             if (!isTouchingWall(-moveSpeed, 0)) {
                 setLocation(getX() - moveSpeed, getY()); // Manually adjust position

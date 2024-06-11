@@ -11,7 +11,7 @@ public class Title extends Actor
     public Title(int breite, int höhe)
     {
         // Setze das Bild für den Button
-        GreenfootImage bild = new GreenfootImage("red-background.png");
+        GreenfootImage bild = new GreenfootImage("logo.png");
         bild.scale(breite, höhe); // Passe die Größe des Bildes an
         setImage(bild);
     }

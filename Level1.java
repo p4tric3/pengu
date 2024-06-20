@@ -12,18 +12,17 @@ public class Level1 extends World
     private int y = 1100;
     private int part = 1;
     
-    private Pengu pengu;
+    Pengu pinguin = new Pengu();
     
     public Level1()
     {    
         super(1488, 837, 1);    // define size and resolution
-        addHugeCliff(false, 85, y);
+        addHugeCliff(false, 75, y);
         addHugeCliff(false, 1200, y);
         
         addCloud(460, 830, 4, y-300);
-        
-        //addPengu(66, y-340);
-        Pengu pinguin = new Pengu();
+        addEnemy(1205, 670);
+
         addObject (pinguin, 85, 670 );
         pinguin.startLeben();
         
@@ -47,32 +46,53 @@ public class Level1 extends World
         addObject ( new Pengu(), x, y);
     }
     
+    public void addEnemy(int x, int y){
+        addObject ( new Enemy(), x, y);
+    }
+    
     //When Pengu is on the right the method is executed
     public void goRight(Pengu pengu)
     {
-         //Unload all Objects
-         removeObject(pengu);
-         removeObjects(getObjects(Cliff.class));
-         removeObjects(getObjects(HugeCliff.class));
-         removeObjects(getObjects(Cloud.class));
-         //Load next world
-         loadNextWorld();
-         part++;
+        //Unload all Objects
+
+        pinguin.setLocation(66,640);
+        removeObjects(getObjects(Cliff.class));
+        removeObjects(getObjects(HugeCliff.class));
+        removeObjects(getObjects(Cloud.class));
+        removeObjects(getObjects(Enemy.class));
+        //Load next world
+        loadNextWorld();
+        part++;
     }
     //Load next part
     public void loadNextWorld(){
         //Each Case is a new part of map        
         switch (part) {
             case 1:
-                addCliff(false, 40, y);
-                addHugeCliff(false, 420, y);
-                addHugeCliff(false, 1100, y-330);
+                addCliff(false, 40, y-100);
+                addCliff(false, 240, y-200);
+                addCliff(false, 440, y-300);
+                addCliff(false, 640, y-400);
+                addCliff(false, 840, y-500);
+                addCliff(false, 1040, y-600);
+                addCliff(false, 1240, y-700);
+                addCliff(false, 1440, y-800);
                 break;
             case 2:
                 addCliff(false, 50, y);
-                addHugeCliff(false, 360, y);
+                addCliff(false, 210, y-400);
                 addCloud(740, 1060, 4, y-300);
+                addCloud(440, 740, 4, y-500);
                 addHugeCliff(false, 1465, y);
+                break;
+            case 3:
+                addCliff(false, 40, y);
+                addCloud(90, 260, 4, y-400);
+                addCloud(240, 360, 2, y-600);
+                addCloud(400, 560, 4, y-400);
+                addCloud(600, 860, 4, y-500);
+                addCloud(900, 1160, 4, y-600);
+                addCloud(1200, 1460, 4, y-700);
                 break;
             default:
                 addCliff(false, 85, y);
@@ -80,7 +100,7 @@ public class Level1 extends World
                 //Greenfoot.setWorld(new Weltenauswahl());
                 //Go back to world selection
         }
-        addPengu(60, y-400);//addObject ( new Pengu(), 60, y-400 );
+        //addPengu(60, y-400);//addObject ( new Pengu(), 60, y-400 );
     }
     
     public void snowball(int sSpeed, int range, int yPos, int xPos)

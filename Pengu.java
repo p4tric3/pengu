@@ -23,11 +23,7 @@ public class Pengu extends Mover
     private int counterImageSteps = 3;
     private int blinkPhase = 0;
     
-    public Level1 uebergeben()
-    {
-        Level1 level1 = (Level1) getWorld();
-        return level1;
-    }
+    public int worldLevel = 0;
     
     public void act() 
     {
@@ -166,7 +162,7 @@ public class Pengu extends Mover
 
     public void checkPosition() 
     {
-        if (getX() > 1400) 
+        if (getX() > 1400 && this.worldLevel == 1) 
         {
             Level1 level1 = (Level1) getWorld();
             level1.goRight(this);
@@ -194,9 +190,15 @@ public class Pengu extends Mover
     }
     
     public void snowball(int sSpeed, int range)
-    {
-        Level1 level1 = (Level1) getWorld();
-        level1.snowball(sSpeed, range, getY(), getX());
+    {   
+        if(this.worldLevel == 1){
+            Level1 level1 = (Level1) getWorld();
+            level1.snowball(sSpeed, range, getY(), getX());
+        }else if(this.worldLevel == 3){
+            Level3 level3 = (Level3) getWorld();
+            level3.snowball(sSpeed, range, getY(), getX());
+            level3.snowballHit();
+        }
     }
     
     public void checkOnGround()

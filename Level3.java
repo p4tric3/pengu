@@ -11,13 +11,14 @@ public class Level3 extends World
 
     private int y = 1100;
     private int part = 1;
-    private int healthBar = 100;
     
     Pengu pinguin = new Pengu();
+    HealthBar HealthBar = new HealthBar(100, 500, 30);
     
     public Level3()
     {    
         super(1488, 837, 1);    // define size and resolution
+        pinguin.worldLevel = 3;
         addCliff(false, 50, y-325);
         addCloud(200, 400, 7, y-300);
         addCliff(false, 550, y);
@@ -26,7 +27,8 @@ public class Level3 extends World
         addCloud(1100, 1300, 6, y-300);
         addCliff(false, 1450, y-325);
         
-        addObject( new HealthBar(healthBar*5, 30, 1, "green.png"), 1488/2 , 30);
+        //addObject( HealthBar, 1488/2 , 30);
+        addObject(HealthBar, 1488/2, 30);
         
         addObject (pinguin, 85, 670 );
         pinguin.startLeben();
@@ -97,10 +99,11 @@ public class Level3 extends World
         addObject ( new Snowball(sSpeed), xPos, yPos);
     }
     
-    public void snowballHit(){        
-        healthBar = healthBar - 1;
-        removeObjects(getObjects(HealthBar.class));
-        //addObject( new HealthBar(healthBar*5, 30, 1, "green.png"), 1488/2 , 50);
+    public void snowballHit(){
+        HealthBar.updateHealth(-1);
+        if(HealthBar.health <= 0){
+            System.out.print("Gewonnen");
+        }
     }
 }
 

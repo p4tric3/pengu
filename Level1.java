@@ -17,6 +17,7 @@ public class Level1 extends World
     public Level1()
     {    
         super(1488, 837, 1);    // define size and resolution
+        pinguin.worldLevel = 1;
         addHugeCliff(false, 85, y);
         addHugeCliff(false, 1200, y);
         

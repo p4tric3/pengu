@@ -1,35 +1,42 @@
-import greenfoot.*;
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class HealthBar extends Actor
-{
-    private int screen;
-    
-    // Konstruktor für den HealthBar
-    public HealthBar(int breite, int höhe, int a, String image)
-    {
-        // Setze das Bild für den HealthBar
-        screen = a;
-        GreenfootImage bild = new GreenfootImage(image);
-        bild.scale(breite, höhe); // Passe die Größe des Bildes an
-        setImage(bild);
+public class HealthBar extends Actor {
+    public int health;
+    private int maxHealth;
+    private int width;
+    private int height;
+
+    public HealthBar(int maxHealth, int width, int height) {
+        this.maxHealth = maxHealth;
+        this.health = maxHealth;  // Initialisiere die Gesundheit auf das Maximum
+        this.width = width;
+        this.height = height;
+        updateImage();
     }
-    
-    
-    
-    // Methode, um zu überprüfen, ob der HealthBar geklickt wurde
-    public void klicke(int a)
-    {
-        Level3 level3 = new Level3();
-        if (Greenfoot.mouseClicked(this))
-        {
-             level3.snowballHit();
+
+    public void act() {
+        // Füge hier Code hinzu, der jedes Frame ausgeführt werden soll
+    }
+
+    public void updateHealth(int change) {
+        health += change;
+        if (health < 0) {
+            health = 0;
+        } else if (health > maxHealth) {
+            health = maxHealth;
         }
+        updateImage();
     }
-    
-    // Die Methode act wird jeden Aktualisierungszyklus aufgerufen
-    public void act()
-    {
-        // Überprüfe, ob der HealthBar geklickt wurde
-        klicke(screen);
+
+    private void updateImage() {
+        GreenfootImage image = new GreenfootImage(width, height);
+        image.setColor(Color.GRAY);
+        image.fillRect(0, 0, width, height);
+
+        int healthWidth = (int) ((double) health / maxHealth * width);
+        image.setColor(Color.GREEN);
+        image.fillRect(0, 0, healthWidth, height);
+
+        setImage(image);
     }
 }

@@ -1,29 +1,35 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Level1 here.
+ * Write a description of class Level3 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Level1 extends World
+public class Level3 extends World
 {
 
     private int y = 1100;
     private int part = 1;
     
     Pengu pinguin = new Pengu();
+    HealthBar HealthBar = new HealthBar(100, 500, 30);
     
-    public Level1()
+    public Level3()
     {    
         super(1488, 837, 1);    // define size and resolution
-        pinguin.worldLevel = 1;
-        addHugeCliff(false, 85, y);
-        addHugeCliff(false, 1200, y);
+        pinguin.worldLevel = 3;
+        addCliff(false, 50, y-325);
+        addCloud(200, 400, 7, y-300);
+        addCliff(false, 550, y);
+        addCloud(700, 800, 3, y-300);
+        addCliff(false, 950, y);
+        addCloud(1100, 1300, 6, y-300);
+        addCliff(false, 1450, y-325);
         
-        addCloud(460, 830, 4, y-300);
-        addEnemy(305, 670);
-
+        //addObject( HealthBar, 1488/2 , 30);
+        addObject(HealthBar, 1488/2, 30);
+        
         addObject (pinguin, 85, 670 );
         pinguin.startLeben();
         
@@ -56,16 +62,16 @@ public class Level1 extends World
     {
         //Unload all Objects
 
-        pinguin.setLocation(66,640);
-        removeObjects(getObjects(Cliff.class));
-        removeObjects(getObjects(HugeCliff.class));
-        removeObjects(getObjects(Cloud.class));
+        //pinguin.setLocation(66,640);
+        //removeObjects(getObjects(Cliff.class));
+        //removeObjects(getObjects(HugeCliff.class));
+        //removeObjects(getObjects(Cloud.class));
         //Load next world
-        loadNextWorld();
-        part++;
+        //loadNextWorld();
+        //part++;
     }
     //Load next part
-    public void loadNextWorld(){
+    /*public void loadNextWorld(){
         //Each Case is a new part of map        
         switch (part) {
             case 1:
@@ -86,10 +92,18 @@ public class Level1 extends World
                 //Go back to world selection
         }
         //addPengu(60, y-400);//addObject ( new Pengu(), 60, y-400 );
-    }
+    }*/
     
     public void snowball(int sSpeed, int range, int yPos, int xPos)
     {
         addObject ( new Snowball(sSpeed), xPos, yPos);
     }
+    
+    public void snowballHit(){
+        HealthBar.updateHealth(-1);
+        if(HealthBar.health <= 0){
+            System.out.print("Gewonnen");
+        }
+    }
 }
+

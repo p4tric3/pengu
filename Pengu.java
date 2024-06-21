@@ -52,7 +52,7 @@ public class Pengu extends Mover
     }
     public void checkKeys()
     {
-        int moveSpeed = 7; // Adjust this value as needed
+        //int moveSpeed = 7; // Adjust this value as needed
         int bounceOffset = moveSpeed * 15; // Adjust this value for the bounce distance
 
         if (Greenfoot.isKeyDown("escape")) {
@@ -157,7 +157,7 @@ public class Pengu extends Mover
             {
                 setImage("pengu-right.png");
             }
-             if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("d"))
+            if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("d"))
             {
                 penguSlideRight.scale(120, 120);
                 setImage(penguSlideRight);
@@ -167,18 +167,18 @@ public class Pengu extends Mover
                 }
                 rutschCount++;
             }
-             if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("a"))
+            if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("a"))
             {
                 penguSlideLeft.scale(120, 120);
                 setImage(penguSlideLeft);
+                if(rutschCount() > 0)
+                {
+                    moveSpeed = 14;
+                }
+                rutschCount++;
             }
-             if(rutschCount() > 0)
-            {
-                moveSpeed = 14;
-            }
-            rutschCount++;
         }
-        if (rutschCount() > 0)
+        if (rutschCount() > 30)
         {
             moveSpeed = moveSpeed - 1;
             if(moveSpeed() > 8)

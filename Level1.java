@@ -17,12 +17,11 @@ public class Level1 extends World
     public Level1()
     {    
         super(1488, 837, 1);    // define size and resolution
-        pinguin.worldLevel = 1;
-        addHugeCliff(false, 85, y);
+        addHugeCliff(false, 75, y);
         addHugeCliff(false, 1200, y);
         
         addCloud(460, 830, 4, y-300);
-        addEnemy(305, 670);
+        addEnemy(1205, 670);
 
         addObject (pinguin, 85, 670 );
         pinguin.startLeben();
@@ -60,6 +59,7 @@ public class Level1 extends World
         removeObjects(getObjects(Cliff.class));
         removeObjects(getObjects(HugeCliff.class));
         removeObjects(getObjects(Cloud.class));
+        removeObjects(getObjects(Enemy.class));
         //Load next world
         loadNextWorld();
         part++;
@@ -69,15 +69,30 @@ public class Level1 extends World
         //Each Case is a new part of map        
         switch (part) {
             case 1:
-                addCliff(false, 40, y);
-                addHugeCliff(false, 420, y);
-                addHugeCliff(false, 1100, y-330);
+                addCliff(false, 40, y-100);
+                addCliff(false, 240, y-200);
+                addCliff(false, 440, y-300);
+                addCliff(false, 640, y-400);
+                addCliff(false, 840, y-500);
+                addCliff(false, 1040, y-600);
+                addCliff(false, 1240, y-700);
+                addCliff(false, 1440, y-800);
                 break;
             case 2:
                 addCliff(false, 50, y);
-                addHugeCliff(false, 360, y);
+                addCliff(false, 210, y-400);
                 addCloud(740, 1060, 4, y-300);
+                addCloud(440, 740, 4, y-500);
                 addHugeCliff(false, 1465, y);
+                break;
+            case 3:
+                addCliff(false, 40, y);
+                addCloud(90, 260, 4, y-400);
+                addCloud(240, 360, 2, y-600);
+                addCloud(400, 560, 4, y-400);
+                addCloud(600, 860, 4, y-500);
+                addCloud(900, 1160, 4, y-600);
+                addCloud(1200, 1460, 4, y-700);
                 break;
             default:
                 addCliff(false, 85, y);

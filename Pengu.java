@@ -5,8 +5,10 @@ import greenfoot.*;
  */
 public class Pengu extends Mover
 {
-    private int jumpStrength = 20;
+    private int jumpStrength = 16;
     private int jumpCount = 0;
+    private int rutschCount = 0;
+    public int moveSpeed = 7;
     public static boolean changeWorld = false;
 
     private Live leben1;
@@ -16,6 +18,8 @@ public class Pengu extends Mover
     
     private GreenfootImage penguRight = new GreenfootImage("pengu-right.png");
     private GreenfootImage penguLeft = new GreenfootImage("pengu-left.png");
+    private GreenfootImage penguSlideLeft = new GreenfootImage("pengu-slide-left-3.png");
+    private GreenfootImage penguSlideRight = new GreenfootImage("pengu-slide-right-3.png");
     private GreenfootImage hiddenImage = null;
 
     private int timerDamage = 0;
@@ -98,10 +102,16 @@ public class Pengu extends Mover
                 smoothWallJump(-bounceOffset, -jumpStrength);
             }*/
         }
-        if (Greenfoot.isKeyDown("shift"))
-        {
-            snowball(15, 100);
-        }
+    }
+    
+    private int moveSpeed()
+    {
+        return moveSpeed;
+    }
+    
+    private int rutschCount()
+    {
+        return rutschCount;
     }
     
     public void manageImages()
@@ -143,6 +153,42 @@ public class Pengu extends Mover
             {
                 setImage("pengu-right.png");
             }
+             if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("d"))
+            {
+                penguSlideRight.scale(120, 120);
+                setImage(penguSlideRight);
+                if(rutschCount() > 0)
+                {
+                    moveSpeed = 14;
+                }
+                rutschCount++;
+            }
+             if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("a"))
+            {
+                penguSlideLeft.scale(120, 120);
+                setImage(penguSlideLeft);
+            }
+             if(rutschCount() > 0)
+            {
+                moveSpeed = 14;
+            }
+            rutschCount++;
+        }
+        if (rutschCount() > 0)
+        {
+            moveSpeed = moveSpeed - 1;
+            if(moveSpeed() > 8)
+            {
+                rutschCount = -60;
+            }
+        }
+        if (moveSpeed() > 8)
+        {
+            moveSpeed = moveSpeed - 1;
+        }
+        if (Greenfoot.isKeyDown("shift"))
+        {
+            snowball(15, 100);
         }
     }
     
@@ -175,7 +221,6 @@ public class Pengu extends Mover
             setVSpeed(-jumpStrength);
             fall();
         }
-        
     }
     
     private void checkFall()

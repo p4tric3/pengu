@@ -101,10 +101,17 @@ dependency8.type=UsesDependency
 dependency9.from=TodMenue
 dependency9.to=Title
 dependency9.type=UsesDependency
+<<<<<<< HEAD
 editor.fx.0.height=1026
 editor.fx.0.width=1696
 editor.fx.0.x=-8
 editor.fx.0.y=-8
+=======
+editor.fx.0.height=722
+editor.fx.0.width=816
+editor.fx.0.x=658
+editor.fx.0.y=145
+>>>>>>> 8c7c829d322586a375005889fde41237bd77631a
 height=1026
 package.numDependencies=31
 package.numTargets=17
@@ -121,7 +128,7 @@ readme.name=@README
 readme.width=49
 readme.x=10
 readme.y=10
-simulation.speed=47
+simulation.speed=46
 target1.height=50
 target1.name=Cliff
 target1.naviview.expanded=true

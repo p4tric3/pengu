@@ -39,6 +39,7 @@ public class Hauptmenue extends World
     public void wechsleZuLevel1() {
         Greenfoot.setWorld(new Level1());
     }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.

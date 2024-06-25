@@ -14,9 +14,6 @@ public class Cloud extends Actor
      */
     public Cloud(int leftTurng, int rightTurng, int speedg)
     {
-        GreenfootImage bild = new GreenfootImage("ice-floe.png");
-        bild.scale(200, 40);
-        setImage(bild);
         speed = speedg;
         leftTurn = leftTurng;
         rightTurn = rightTurng;

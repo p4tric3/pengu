@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=HealthBar
+comment1.params=maxHealth\ width\ height
+comment1.target=HealthBar(int,\ int,\ int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=change
+comment3.target=void\ updateHealth(int)
+comment4.params=
+comment4.target=void\ updateImage()
+numComments=5

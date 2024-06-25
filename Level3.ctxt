@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=Level3
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Level3\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=Level3()
+comment2.params=flip\ x\ y
+comment2.target=void\ addCliff(java.lang.Boolean,\ int,\ int)
+comment3.params=flip\ x\ y
+comment3.target=void\ addHugeCliff(java.lang.Boolean,\ int,\ int)
+comment4.params=minX\ maxX\ speed\ y
+comment4.target=void\ addCloud(int,\ int,\ int,\ int)
+comment5.params=x\ y
+comment5.target=void\ addPengu(int,\ int)
+comment6.params=x\ y
+comment6.target=void\ addEnemy(int,\ int)
+comment7.params=pengu
+comment7.target=void\ goRight(Pengu)
+comment8.params=sSpeed\ range\ yPos\ xPos
+comment8.target=void\ snowball(int,\ int,\ int,\ int)
+comment8.text=public\ void\ loadNextWorld(){\r\n\ \ \ \ \ \ \ \ //Each\ Case\ is\ a\ new\ part\ of\ map\ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ switch\ (part)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ case\ 1\:\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addCliff(false,\ 40,\ y);\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addHugeCliff(false,\ 420,\ y);\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addHugeCliff(false,\ 1100,\ y-330);\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ break;\r\n\ \ \ \ \ \ \ \ \ \ \ \ case\ 2\:\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addCliff(false,\ 50,\ y);\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addHugeCliff(false,\ 360,\ y);\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addCloud(740,\ 1060,\ 4,\ y-300);\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addHugeCliff(false,\ 1465,\ y);\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ break;\r\n\ \ \ \ \ \ \ \ \ \ \ \ default\:\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addCliff(false,\ 85,\ y);\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println("Welt\ Abgeschlossen");\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //Greenfoot.setWorld(new\ Weltenauswahl());\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //Go\ back\ to\ world\ selection\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ //addPengu(60,\ y-400);//addObject\ (\ new\ Pengu(),\ 60,\ y-400\ );\r\n}
+comment9.params=
+comment9.target=void\ snowballHit()
+numComments=10

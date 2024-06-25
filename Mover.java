@@ -58,4 +58,9 @@ public class Mover extends Actor
     {
         return vSpeed;
     }
+    
+    public int getSpeed()
+    {
+        return speed;
+    }
 }

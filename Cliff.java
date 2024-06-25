@@ -4,15 +4,13 @@ public class Cliff extends Actor
 {
     public Cliff()
     {
-        GreenfootImage bild = new GreenfootImage("ice-cliff.png");
-        bild.scale(200, 40);
+        GreenfootImage bild = new GreenfootImage("cliff.png");
         setImage(bild);
     }
     
     public Cliff(boolean flip)
     {
-        GreenfootImage bild = new GreenfootImage("ice-cliff.png");
-        bild.scale(200, 40);
+        GreenfootImage bild = new GreenfootImage("cliff.png");
         setImage(bild);
         if (flip) {
             getImage().mirrorHorizontally();

@@ -29,7 +29,7 @@ public class Bullet extends Actor
     
     public Bullet(int speedg)
     {
-        GreenfootImage bild = new GreenfootImage("Blackscreen.png");
+        GreenfootImage bild = new GreenfootImage("Blackscreen.jpg");
         bild.scale(15, 15);
         setImage(bild);
         speed = speedg;

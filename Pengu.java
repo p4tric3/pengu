@@ -5,8 +5,10 @@ import greenfoot.*;
  */
 public class Pengu extends Mover
 {
-    private int jumpStrength = 20;
+    private int jumpStrength = 16;
     private int jumpCount = 0;
+    private int rutschCount = 0;
+    public int moveSpeed = 7;
     public static boolean changeWorld = false;
 
     private Live leben1;
@@ -16,6 +18,8 @@ public class Pengu extends Mover
     
     private GreenfootImage penguRight = new GreenfootImage("pengu-right.png");
     private GreenfootImage penguLeft = new GreenfootImage("pengu-left.png");
+    private GreenfootImage penguSlideLeft = new GreenfootImage("pengu-slide-left-3.png");
+    private GreenfootImage penguSlideRight = new GreenfootImage("pengu-slide-right-3.png");
     private GreenfootImage hiddenImage = null;
 
     private int timerDamage = 0;
@@ -23,11 +27,7 @@ public class Pengu extends Mover
     private int counterImageSteps = 3;
     private int blinkPhase = 0;
     
-    public Level1 uebergeben()
-    {
-        Level1 level1 = (Level1) getWorld();
-        return level1;
-    }
+    public int worldLevel = 1;
     
     public void act() 
     {
@@ -50,7 +50,10 @@ public class Pengu extends Mover
     {
         int moveSpeed = 7; // Adjust this value as needed
         int bounceOffset = moveSpeed * 15; // Adjust this value for the bounce distance
-        
+
+        if (Greenfoot.isKeyDown("escape")) {
+            Greenfoot.setWorld(new Hauptmenue());
+        }
         if (Greenfoot.isKeyDown("a") && timerDamage < 0) {
             if (!isTouchingWall(-moveSpeed, 0)) {
                 setLocation(getX() - moveSpeed, getY()); // Manually adjust position
@@ -99,10 +102,16 @@ public class Pengu extends Mover
                 smoothWallJump(-bounceOffset, -jumpStrength);
             }*/
         }
-        if (Greenfoot.isKeyDown("shift"))
-        {
-            snowball(15, 100);
-        }
+    }
+    
+    private int moveSpeed()
+    {
+        return moveSpeed;
+    }
+    
+    private int rutschCount()
+    {
+        return rutschCount;
     }
     
     public void manageImages()
@@ -144,6 +153,42 @@ public class Pengu extends Mover
             {
                 setImage("pengu-right.png");
             }
+             if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("d"))
+            {
+                penguSlideRight.scale(120, 120);
+                setImage(penguSlideRight);
+                if(rutschCount() > 0)
+                {
+                    moveSpeed = 14;
+                }
+                rutschCount++;
+            }
+             if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("a"))
+            {
+                penguSlideLeft.scale(120, 120);
+                setImage(penguSlideLeft);
+            }
+             if(rutschCount() > 0)
+            {
+                moveSpeed = 14;
+            }
+            rutschCount++;
+        }
+        if (rutschCount() > 0)
+        {
+            moveSpeed = moveSpeed - 1;
+            if(moveSpeed() > 8)
+            {
+                rutschCount = -60;
+            }
+        }
+        if (moveSpeed() > 8)
+        {
+            moveSpeed = moveSpeed - 1;
+        }
+        if (Greenfoot.isKeyDown("shift"))
+        {
+            snowball(15, 100);
         }
     }
     
@@ -163,7 +208,7 @@ public class Pengu extends Mover
 
     public void checkPosition() 
     {
-        if (getX() > 1400) 
+        if (getX() > 1400 && this.worldLevel == 1) 
         {
             Level1 level1 = (Level1) getWorld();
             level1.goRight(this);
@@ -176,7 +221,6 @@ public class Pengu extends Mover
             setVSpeed(-jumpStrength);
             fall();
         }
-        
     }
     
     private void checkFall()
@@ -191,9 +235,15 @@ public class Pengu extends Mover
     }
     
     public void snowball(int sSpeed, int range)
-    {
-        Level1 level1 = (Level1) getWorld();
-        level1.snowball(sSpeed, range, getY(), getX());
+    {   
+        if(this.worldLevel == 1){
+            Level1 level1 = (Level1) getWorld();
+            level1.snowball(sSpeed, range, getY(), getX());
+        }else if(this.worldLevel == 3){
+            Level3 level3 = (Level3) getWorld();
+            level3.snowball(sSpeed, range, getY(), getX());
+            level3.snowballHit();
+        }
     }
     
     public void checkOnGround()
@@ -276,12 +326,21 @@ public class Pengu extends Mover
     }
 
     public void checkGegner(){
-        Level1 level1 = (Level1) getWorld();
+        
         
         if (isTouching(Bullet.class)){
             if (timerDamage<=0){
                 removeLeben();
-                level1.removeObject(getOneIntersectingObject(Bullet.class));
+                if (this.worldLevel == 1) 
+                {
+                    Level1 level1 = (Level1) getWorld();
+                    level1.removeObject(getOneIntersectingObject(Bullet.class));
+                }
+                else if (this.worldLevel == 3) 
+                {
+                    Level3 level3 = (Level3) getWorld();
+                    level3.removeObject(getOneIntersectingObject(Bullet.class));
+                }
                 timerDamage = 100;
             }
         }

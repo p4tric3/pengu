@@ -19,8 +19,8 @@ public class Weltenauswahl extends World
         setBackground("titlebg.png");
         
         addObject ( new Button(buttonBreite, buttonHoehe, 4, "buttonWelt1.png"), 1488/2 - (buttonBreite + 50), 560);
-        addObject ( new Button(buttonBreite, buttonHoehe, 5, "buttonWelt2.png"), 1488/2, 560);
-        addObject ( new Button(buttonBreite, buttonHoehe, 6, "buttonWelt3.png"), 1488/2 + (buttonBreite + 50), 560);
+        //addObject ( new Button(buttonBreite, buttonHoehe, 5, "buttonWelt2.png"), 1488/2, 560);
+        addObject ( new Button(buttonBreite, buttonHoehe, 6, "buttonWelt2.png"), 1488/2 + (buttonBreite + 50), 560);
         
         addObject ( new Title(519, 129), 1488/2, 250);
     }

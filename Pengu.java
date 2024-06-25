@@ -27,7 +27,7 @@ public class Pengu extends Mover
     private int counterImageSteps = 3;
     private int blinkPhase = 0;
     
-    public int worldLevel = 0;
+    public int worldLevel = 1;
     
     public void act() 
     {

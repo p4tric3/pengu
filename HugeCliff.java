@@ -4,10 +4,14 @@ public class HugeCliff extends Actor
 {
     public HugeCliff()
     {
+        GreenfootImage bild = new GreenfootImage("hugecliff.png");
+        setImage(bild);
     }
     
     public HugeCliff(boolean flip)
     {
+        GreenfootImage bild = new GreenfootImage("hugecliff.png");
+        setImage(bild);
         if (flip) {
             getImage().mirrorHorizontally();
         }

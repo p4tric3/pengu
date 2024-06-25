@@ -22,6 +22,10 @@ public class Hauptmenue extends World
         setBackground("titlebg.png");
         checkKeys();
         prepare();
+        
+        GreenfootSound titlescreen = new GreenfootSound("Title.mp3");
+        titlescreen.playLoop();
+        titlescreen.setVolume(0);
     }
 
     private void checkKeys()

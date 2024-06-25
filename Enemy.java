@@ -21,10 +21,17 @@ public class Enemy extends Mover
     
     public void act()
     {
-        // Add your action code here.
+        //shoot();
     }
     
     public void damage(){
     
     }
+    
+    /**public void shoot()
+    {
+        int bSpeed = 15;
+        Level1 level1 = (Level1) getWorld();
+        level1.bullet(bSpeed, getY(), getX());
+    }*/
 }

@@ -326,9 +326,21 @@ public class Pengu extends Mover
     }
 
     public void checkGegner(){
-        if (isTouching(Enemy.class)){
+        
+        
+        if (isTouching(Bullet.class)){
             if (timerDamage<=0){
                 removeLeben();
+                if (this.worldLevel == 1) 
+                {
+                    Level1 level1 = (Level1) getWorld();
+                    level1.removeObject(getOneIntersectingObject(Bullet.class));
+                }
+                else if (this.worldLevel == 3) 
+                {
+                    Level3 level3 = (Level3) getWorld();
+                    level3.removeObject(getOneIntersectingObject(Bullet.class));
+                }
                 timerDamage = 100;
             }
         }

@@ -13,6 +13,7 @@ public class Level1 extends World
     private int part = 1;
     
     Pengu pinguin = new Pengu();
+    Hunter hunter = new Hunter();
     
     public Level1()
     {    
@@ -21,8 +22,9 @@ public class Level1 extends World
         addHugeCliff(false, 1200, y);
         
         addCloud(460, 830, 4, y-300);
-        addEnemy(305, 670);
-
+        
+        addHunter(1000, 690);
+        
         addObject (pinguin, 85, 670 );
         pinguin.startLeben();
         
@@ -50,6 +52,10 @@ public class Level1 extends World
         addObject ( new Enemy(), x, y);
     }
     
+    public void addHunter(int x, int y){
+        addObject ( new Hunter(), x, y);
+    }
+    
     //When Pengu is on the right the method is executed
     public void goRight(Pengu pengu)
     {
@@ -71,6 +77,7 @@ public class Level1 extends World
                 addCliff(false, 40, y);
                 addHugeCliff(false, 420, y);
                 addHugeCliff(false, 1100, y-330);
+                addHunter(305, 670);
                 break;
             case 2:
                 addCliff(false, 50, y);
@@ -90,5 +97,10 @@ public class Level1 extends World
     public void snowball(int sSpeed, int range, int yPos, int xPos)
     {
         addObject ( new Snowball(sSpeed), xPos, yPos);
+    }
+    
+    public void bullet(int xPos, int yPos)
+    {
+        addObject ( new Bullet(14), xPos, yPos);
     }
 }
